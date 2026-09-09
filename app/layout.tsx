@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Plus_Jakarta_Sans, Playfair_Display } from 'next/font/google';
+import { Plus_Jakarta_Sans, Playfair_Display, Caveat } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/context/ThemeContext';
 import PageTransition from '@/components/PageTransition';
@@ -17,6 +17,13 @@ const serif = Playfair_Display({
   variable: '--font-serif',
   display: 'swap',
   weight: ['400', '600', '700'],
+});
+
+const script = Caveat({
+  subsets: ['latin'],
+  variable: '--font-script',
+  display: 'swap',
+  weight: ['500', '700'],
 });
 
 export const metadata: Metadata = {
@@ -43,7 +50,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${sans.variable} ${serif.variable} scroll-smooth`}>
+    <html lang="en" suppressHydrationWarning className={`${sans.variable} ${serif.variable} ${script.variable} scroll-smooth`}>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -60,7 +67,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="font-sans bg-[#f8f8f6] dark:bg-[#090a0d] text-[#0e0f11] dark:text-[#f5f5f7] antialiased selection:bg-[#c8ff00] selection:text-black min-h-screen transition-colors duration-300">
+      <body className="font-sans bg-[#dde2ea] dark:bg-[#0a0c10] text-[#0a0b0e] dark:text-[#f5f6fa] antialiased selection:bg-[#ff4d26] selection:text-white min-h-screen transition-colors duration-300">
         <ThemeProvider>
           <PageTransition>
             {children}

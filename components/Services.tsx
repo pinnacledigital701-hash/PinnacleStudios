@@ -3,130 +3,125 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { SERVICES } from '@/data/siteData';
-import { ArrowUpRight, Check, Plus, Minus } from 'lucide-react';
+import { Plus, Minus, ArrowUpRight } from 'lucide-react';
 
 export default function Services() {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(1); // Open 02 Design by default like reference
 
   const toggleExpand = (idx: number) => {
     setExpandedIndex(expandedIndex === idx ? null : idx);
   };
 
   return (
-    <section id="services" className="py-24 sm:py-32 bg-[#0d0e12] dark:bg-[#06070a] text-white relative overflow-hidden transition-colors duration-300">
-      {/* Subtle Radial Electric Glow */}
+    <section
+      id="services"
+      className="py-24 sm:py-32 bg-[#dde2ea] dark:bg-[#0a0c10] relative overflow-hidden transition-colors duration-300"
+    >
+      {/* Ghost Background Watermark (Direct Reference Element) */}
       <div
-        className="absolute top-1/3 right-0 w-[500px] h-[500px] rounded-full pointer-events-none -z-0 blur-3xl opacity-15"
-        style={{
-          background: 'radial-gradient(circle, #c8ff00 0%, transparent 70%)',
-        }}
+        className="absolute top-10 left-4 sm:left-12 pointer-events-none select-none -z-0"
         aria-hidden="true"
-      />
+      >
+        <span className="text-[13vw] font-black uppercase tracking-tighter text-white/60 dark:text-white/[0.03] leading-none block">
+          SERVICE
+        </span>
+      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 pb-8 border-b border-white/10">
-          <div>
-            <div className="text-[11px] font-mono uppercase tracking-widest text-[#c8ff00] mb-2">
-              / Studio Disciplines &amp; Offerings
-            </div>
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white">
-              Complete capabilities.{' '}
-              <span className="font-serif-italic font-normal text-white">
-                Singular focus.
-              </span>
-            </h2>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header with Accent Bar (Direct Reference: "SERVICES |") */}
+        <div className="flex items-center justify-between mb-10 sm:mb-14">
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-black uppercase tracking-wider text-neutral-900 dark:text-white">
+              SERVICES
+            </span>
+            <span className="w-1 h-4 bg-[#ff4d26] inline-block rounded-full" />
           </div>
-          <p className="text-sm sm:text-base text-neutral-400 max-w-md">
-            We don’t outsource or hand off. Each service is directed and built by founders Mateo &amp; Omar to guarantee
-            total alignment from conception to deployment.
-          </p>
+
+          <span className="text-xs font-mono uppercase text-neutral-500 dark:text-neutral-400">
+            01 — 05 Disciplines
+          </span>
         </div>
 
-        {/* Editorial Service Accordion / List */}
-        <div className="divide-y divide-white/10">
+        {/* Editorial Accordion Cards (Direct Reference Styling) */}
+        <div className="space-y-4 sm:space-y-5">
           {SERVICES.map((service, idx) => {
             const isExpanded = expandedIndex === idx;
             return (
               <div
                 key={service.number}
-                className="group py-8 sm:py-10 transition-colors duration-300"
+                className="rounded-[2rem] bg-white dark:bg-[#131620] border border-black/5 dark:border-white/10 shadow-sm transition-all duration-300 overflow-hidden"
               >
-                <div
+                {/* Accordion Trigger Header */}
+                <button
+                  type="button"
                   onClick={() => toggleExpand(idx)}
-                  className="flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer select-none"
+                  className="w-full text-left p-6 sm:p-10 flex items-center justify-between gap-4 cursor-pointer focus:outline-none"
+                  aria-expanded={isExpanded}
                 >
-                  <div className="flex items-start md:items-center gap-6 sm:gap-10">
-                    <span className="font-mono text-sm sm:text-base text-neutral-500 group-hover:text-[#c8ff00] transition-colors">
+                  <div className="flex items-center gap-4 sm:gap-8">
+                    <span className="text-sm sm:text-base font-mono font-bold text-neutral-400 dark:text-neutral-500">
                       {service.number}
                     </span>
-                    <div>
-                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white group-hover:text-[#c8ff00] transition-colors">
-                        {service.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-neutral-400 mt-1 font-serif-italic">
-                        {service.subtitle}
-                      </p>
-                    </div>
+                    <h3 className="text-2xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-neutral-950 dark:text-white">
+                      {service.title}
+                    </h3>
                   </div>
 
-                  <div className="flex items-center gap-4 self-end md:self-auto">
-                    <span className="hidden sm:inline-block text-xs font-mono text-neutral-500 uppercase">
-                      {isExpanded ? 'Collapse' : 'Details'}
-                    </span>
-                    <div
-                      className={`w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white transition-transform duration-300 ${
-                        isExpanded ? 'bg-[#c8ff00] text-black border-transparent rotate-45' : 'group-hover:border-white/50'
-                      }`}
-                    >
-                      <Plus className="w-4 h-4" />
-                    </div>
+                  {/* Clean Expand/Collapse Icon */}
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-black/10 dark:border-white/15 flex items-center justify-center text-neutral-900 dark:text-white shrink-0 hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+                    {isExpanded ? (
+                      <Minus className="w-5 h-5" />
+                    ) : (
+                      <Plus className="w-5 h-5" />
+                    )}
                   </div>
-                </div>
+                </button>
 
-                {/* Expanded Details Panel */}
+                {/* Expanded Content */}
                 <AnimatePresence initial={false}>
                   {isExpanded && (
                     <motion.div
-                      key={`details-${service.number}`}
+                      key={`content-${service.number}`}
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: 'auto' }}
                       exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="pt-8 pb-4 grid grid-cols-1 lg:grid-cols-12 gap-8">
-                        <div className="lg:col-span-6 lg:pl-16">
-                          <p className="text-base text-neutral-300 leading-relaxed mb-6 font-normal">
-                            {service.description}
-                          </p>
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs font-mono text-neutral-500 uppercase">Tools &amp; Stack:</span>
-                            <div className="flex flex-wrap gap-1.5">
-                              {service.tools.map((t) => (
-                                <span
-                                  key={t}
-                                  className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[11px] font-mono text-neutral-300"
-                                >
-                                  {t}
-                                </span>
+                      <div className="px-6 pb-8 sm:px-10 sm:pb-10 pt-2 border-t border-black/5 dark:border-white/5">
+                        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-start">
+                          <div className="md:col-span-6">
+                            <p className="text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed mb-4">
+                              {service.description}
+                            </p>
+                            <p className="text-xs font-mono text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
+                              Key Tools: {service.tools.join(' · ')}
+                            </p>
+                          </div>
+
+                          <div className="md:col-span-6">
+                            <span className="text-xs font-bold uppercase tracking-wider text-neutral-900 dark:text-white block mb-3">
+                              What We Deliver:
+                            </span>
+                            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-neutral-600 dark:text-neutral-300">
+                              {service.deliverables.map((deliv) => (
+                                <li key={deliv} className="flex items-center gap-2">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-[#ff4d26] shrink-0" />
+                                  <span>{deliv}</span>
+                                </li>
                               ))}
-                            </div>
+                            </ul>
                           </div>
                         </div>
 
-                        <div className="lg:col-span-6 p-6 rounded-2xl bg-[#14161c] border border-white/10">
-                          <span className="text-[11px] font-mono uppercase tracking-wider text-[#c8ff00] block mb-3 font-semibold">
-                            What We Deliver
-                          </span>
-                          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                            {service.deliverables.map((item) => (
-                              <li key={item} className="flex items-start gap-2 text-xs text-neutral-300">
-                                <Check className="w-3.5 h-3.5 text-[#c8ff00] shrink-0 mt-0.5" />
-                                <span>{item}</span>
-                              </li>
-                            ))}
-                          </ul>
+                        <div className="mt-6 pt-4 flex items-center justify-between">
+                          <a
+                            href="#contact"
+                            className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-[#ff4d26] hover:underline"
+                          >
+                            Inquire about {service.title}
+                            <ArrowUpRight className="w-3.5 h-3.5" />
+                          </a>
                         </div>
                       </div>
                     </motion.div>
@@ -135,20 +130,6 @@ export default function Services() {
               </div>
             );
           })}
-        </div>
-
-        {/* Service Section Footer CTA */}
-        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <p className="text-xs sm:text-sm text-neutral-400">
-            Have a custom scope or specific technical requirements?
-          </p>
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#c8ff00] text-black font-semibold text-xs transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]"
-          >
-            <span>Request Scope Breakdown</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
         </div>
       </div>
     </section>

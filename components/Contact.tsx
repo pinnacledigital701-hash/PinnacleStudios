@@ -1,22 +1,21 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ArrowUpRight, CheckCircle2, AlertCircle, Loader2, Mail, Copy, Check, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Check, Copy, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
 
 const PROJECT_TYPES = [
   'Website Design',
-  'Website Development',
-  'Redesign',
+  'Web Development',
+  'Full-Stack App',
   'Brand Identity',
-  'E-commerce',
-  'Other',
+  'Redesign',
 ];
 
 const BUDGET_RANGES = [
-  '$500–$1,000',
   '$1,000–$2,500',
   '$2,500–$5,000',
-  '$5,000+',
+  '$5,000–$10,000',
+  '$10,000+',
 ];
 
 export default function Contact() {
@@ -25,7 +24,7 @@ export default function Contact() {
     email: '',
     company: '',
     projectType: 'Website Design',
-    budgetRange: '$1,000–$2,500',
+    budgetRange: '$2,500–$5,000',
     message: '',
   });
 
@@ -46,9 +45,8 @@ export default function Contact() {
     e.preventDefault();
     setErrorMessage(null);
 
-    // Client validation
     if (!formData.name.trim()) {
-      setErrorMessage('Please enter your full name.');
+      setErrorMessage('Please enter your name.');
       return;
     }
     if (!formData.email.trim() || !formData.email.includes('@')) {
@@ -76,196 +74,159 @@ export default function Contact() {
       }
 
       setSuccessInfo({
-        message: data.message,
+        message: data.message || 'Thank you! Mateo & Omar will review your inquiry within 24 hours.',
         inquiryId: data.inquiryId,
       });
 
-      // Reset form
       setFormData({
         name: '',
         email: '',
         company: '',
         projectType: 'Website Design',
-        budgetRange: '$1,000–$2,500',
+        budgetRange: '$2,500–$5,000',
         message: '',
       });
     } catch (err: any) {
-      setErrorMessage(err.message || 'Something went wrong. Please try again or email us directly.');
+      setErrorMessage(err.message || 'Something went wrong. Please email us directly.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <section id="contact" className="py-24 sm:py-32 bg-[#f8f8f6] dark:bg-[#090a0d] relative overflow-hidden">
-      {/* Subtle Lime Glow behind contact area */}
+    <section
+      id="contact"
+      className="py-24 sm:py-32 bg-[#dde2ea] dark:bg-[#0a0c10] relative overflow-hidden transition-colors duration-300"
+    >
+      {/* Ghost Background Watermark (Direct Reference Element) */}
       <div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[600px] h-[350px] rounded-full pointer-events-none -z-0 blur-3xl opacity-25"
-        style={{
-          background: 'radial-gradient(circle, #c8ff00 0%, rgba(200, 255, 0, 0.1) 60%, transparent 80%)',
-        }}
+        className="absolute top-10 right-4 sm:right-12 pointer-events-none select-none -z-0"
         aria-hidden="true"
-      />
+      >
+        <span className="text-[13vw] font-black uppercase tracking-tighter text-white/60 dark:text-white/[0.03] leading-none block">
+          LET&apos;S TALK
+        </span>
+      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-          {/* Left Column: Direct Heading & Narrative */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <div className="flex items-center gap-2 mb-10 sm:mb-14">
+          <span className="w-1 h-4 bg-[#ff4d26] inline-block rounded-full" />
+          <span className="text-sm font-black uppercase tracking-wider text-neutral-900 dark:text-white">
+            START A PROJECT
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          {/* Left Column: Direct Studio Invitation */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400 mb-3">
-                <span className="w-2 h-2 rounded-full bg-[#8bc300] dark:bg-[#c8ff00] animate-ping" />
-                Let&apos;s Build Together
-              </div>
-
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-950 dark:text-white leading-[1.05] mb-6">
-                Have something{' '}
-                <span className="font-serif-italic font-normal">worth building?</span>
+              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-neutral-950 dark:text-white leading-[0.95] mb-6">
+                Let&apos;s build
+                <br />
+                something
+                <br />
+                <span className="font-serif-italic font-normal lowercase tracking-normal text-neutral-800 dark:text-neutral-200 block">
+                  unforgettable.
+                </span>
               </h2>
 
-              <p className="text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed mb-8 font-normal">
-                Tell us what you&apos;re working on, what you need and where you want to go. Mateo and Omar review every
-                inquiry personally within 24 hours.
+              <p className="text-sm sm:text-base text-neutral-700 dark:text-neutral-300 leading-relaxed font-normal mb-8 max-w-md">
+                Have a new brand to launch, a web platform to build, or a redesign to execute? Tell us about your goals
+                and you will hear directly from Mateo and Omar.
               </p>
 
               {/* Direct Email Card */}
-              <div className="p-5 rounded-2xl bg-white dark:bg-[#13151b] border border-black/[0.08] dark:border-white/10 shadow-2xs mb-8">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-neutral-400 dark:text-neutral-500 block mb-1 font-semibold">
-                  Prefer direct email?
+              <div className="p-6 rounded-[2rem] bg-white dark:bg-[#131620] border border-black/5 dark:border-white/10 shadow-sm mb-6">
+                <span className="text-[10px] font-mono uppercase text-neutral-400 block mb-1 font-bold">
+                  Direct Line
                 </span>
-                <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center justify-between gap-2">
                   <a
                     href={`mailto:${directEmail}`}
-                    className="text-sm font-semibold text-neutral-900 dark:text-[#c8ff00] hover:text-black dark:hover:text-[#c8ff00] dark:hover:underline truncate"
+                    className="text-sm sm:text-base font-mono font-bold text-neutral-900 dark:text-white hover:text-[#ff4d26] transition-colors truncate"
                   >
                     {directEmail}
                   </a>
                   <button
                     type="button"
                     onClick={handleCopyEmail}
-                    className="shrink-0 p-2 rounded-lg bg-neutral-100 dark:bg-white/10 hover:bg-neutral-200 dark:hover:bg-white/20 text-neutral-700 dark:text-neutral-200 transition-colors focus:outline-none focus:ring-2 focus:ring-[#c8ff00]"
+                    className="p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-white/10 text-neutral-600 dark:text-neutral-300 transition-colors shrink-0"
                     title="Copy email to clipboard"
-                    aria-label="Copy studio email address"
                   >
-                    {copiedEmail ? <Check className="w-4 h-4 text-emerald-600 dark:text-[#c8ff00]" /> : <Copy className="w-4 h-4" />}
+                    {copiedEmail ? (
+                      <Check className="w-4 h-4 text-emerald-600" />
+                    ) : (
+                      <Copy className="w-4 h-4" />
+                    )}
                   </button>
                 </div>
               </div>
-            </div>
 
-            {/* Studio Availability Stamp */}
-            <div className="p-5 rounded-2xl bg-white/70 dark:bg-[#13151b]/70 border border-black/[0.06] dark:border-white/10 text-xs text-neutral-600 dark:text-neutral-400">
-              <div className="flex items-center gap-2 mb-1 font-semibold text-neutral-900 dark:text-white">
-                <Sparkles className="w-3.5 h-3.5 text-[#8bc300] dark:text-[#c8ff00]" />
-                Direct Founder Commitment
+              {/* Direct Studio Commitments */}
+              <div className="space-y-2 text-xs font-mono text-neutral-600 dark:text-neutral-400">
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#ff4d26]" />
+                  <span>24-Hour Founder Response Time</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#ff4d26]" />
+                  <span>Transparent Pricing &amp; Milestone Scopes</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#ff4d26]" />
+                  <span>No Junior Handoffs. Mateo &amp; Omar Direct.</span>
+                </div>
               </div>
-              <p>
-                No sales reps. No pitch teams. When you submit this form, Mateo and Omar read your brief and draft your
-                technical roadmap.
-              </p>
             </div>
           </div>
 
-          {/* Right Column: Contact Form */}
+          {/* Right Column: Sleek Editorial Inquiry Form */}
           <div className="lg:col-span-7">
-            <div className="bg-white dark:bg-[#13151b] rounded-3xl p-6 sm:p-10 border border-black/[0.08] dark:border-white/10 shadow-lg">
+            <div className="rounded-[2.25rem] bg-white dark:bg-[#131620] p-7 sm:p-10 border border-black/5 dark:border-white/10 shadow-xl">
               {successInfo ? (
-                <div className="py-12 text-center animate-in fade-in zoom-in-95 duration-300">
-                  <div className="w-16 h-16 rounded-full bg-[#c8ff00]/30 border border-[#b8ee44] mx-auto mb-6 flex items-center justify-center text-neutral-950 dark:text-white">
-                    <CheckCircle2 className="w-8 h-8 text-[#659100] dark:text-[#c8ff00]" />
+                <div className="py-12 text-center">
+                  <div className="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-950/50 text-emerald-600 flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle2 className="w-8 h-8" />
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-950 dark:text-white mb-3">
+                  <h3 className="text-2xl font-bold uppercase tracking-tight text-neutral-950 dark:text-white mb-2">
                     Inquiry Received
                   </h3>
-                  <p className="text-sm sm:text-base text-neutral-700 dark:text-neutral-300 max-w-md mx-auto mb-6 leading-relaxed">
+                  <p className="text-sm text-neutral-600 dark:text-neutral-300 max-w-md mx-auto mb-6">
                     {successInfo.message}
                   </p>
-                  {successInfo.inquiryId && (
-                    <div className="inline-block px-3.5 py-1 rounded-md bg-neutral-100 dark:bg-white/10 font-mono text-xs text-neutral-600 dark:text-neutral-300 mb-8">
-                      Reference ID: {successInfo.inquiryId}
-                    </div>
-                  )}
-                  <div>
-                    <button
-                      type="button"
-                      onClick={() => setSuccessInfo(null)}
-                      className="px-6 py-2.5 rounded-full bg-black dark:bg-[#c8ff00] text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-[#b8ec00] text-xs font-semibold transition-colors"
-                    >
-                      Send Another Message
-                    </button>
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setSuccessInfo(null)}
+                    className="text-xs font-bold uppercase tracking-wider text-[#ff4d26] underline"
+                  >
+                    Send another message
+                  </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+                <form onSubmit={handleSubmit} className="space-y-6">
                   {errorMessage && (
-                    <div className="p-4 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/50 text-xs text-red-700 dark:text-red-300 flex items-start gap-2">
-                      <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+                    <div className="p-4 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/50 text-xs text-rose-700 dark:text-rose-300 flex items-center gap-2">
+                      <AlertCircle className="w-4 h-4 shrink-0" />
                       <span>{errorMessage}</span>
                     </div>
                   )}
 
-                  {/* Name & Email Row */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                      <label htmlFor="contact-name" className="block text-xs font-semibold text-neutral-800 dark:text-neutral-200 mb-2">
-                        Your Name <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        id="contact-name"
-                        type="text"
-                        required
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="e.g. Alexandra Vance"
-                        className="w-full px-4 py-3 rounded-xl border border-black/10 dark:border-white/15 bg-neutral-50/50 dark:bg-white/[0.04] text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:bg-white dark:focus:bg-[#1a1d26] focus:outline-none focus:ring-2 focus:ring-[#c8ff00] focus:border-transparent transition-all"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="contact-email" className="block text-xs font-semibold text-neutral-800 dark:text-neutral-200 mb-2">
-                        Work Email <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        id="contact-email"
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="e.g. alex@company.com"
-                        className="w-full px-4 py-3 rounded-xl border border-black/10 dark:border-white/15 bg-neutral-50/50 dark:bg-white/[0.04] text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:bg-white dark:focus:bg-[#1a1d26] focus:outline-none focus:ring-2 focus:ring-[#c8ff00] focus:border-transparent transition-all"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Company */}
+                  {/* Project Type Select */}
                   <div>
-                    <label htmlFor="contact-company" className="block text-xs font-semibold text-neutral-800 dark:text-neutral-200 mb-2">
-                      Company / Organization (Optional)
+                    <label className="text-xs font-mono uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block mb-2 font-bold">
+                      What are you looking to create?
                     </label>
-                    <input
-                      id="contact-company"
-                      type="text"
-                      value={formData.company}
-                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      placeholder="e.g. Acme Ventures"
-                      className="w-full px-4 py-3 rounded-xl border border-black/10 dark:border-white/15 bg-neutral-50/50 dark:bg-white/[0.04] text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:bg-white dark:focus:bg-[#1a1d26] focus:outline-none focus:ring-2 focus:ring-[#c8ff00] focus:border-transparent transition-all"
-                    />
-                  </div>
-
-                  {/* Project Type Radio / Pills */}
-                  <div>
-                    <label className="block text-xs font-semibold text-neutral-800 dark:text-neutral-200 mb-2">
-                      What type of project are you looking to build? <span className="text-red-500">*</span>
-                    </label>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    <div className="flex flex-wrap gap-2">
                       {PROJECT_TYPES.map((type) => (
                         <button
                           key={type}
                           type="button"
                           onClick={() => setFormData({ ...formData, projectType: type })}
-                          className={`py-2 px-3 rounded-xl text-xs font-medium text-center transition-all cursor-pointer ${
+                          className={`px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer ${
                             formData.projectType === type
-                              ? 'bg-black dark:bg-[#c8ff00] text-white dark:text-black font-semibold shadow-xs'
-                              : 'bg-neutral-100 dark:bg-white/[0.06] hover:bg-neutral-200/80 dark:hover:bg-white/10 text-neutral-700 dark:text-neutral-300'
+                              ? 'bg-black dark:bg-white text-white dark:text-black shadow-xs'
+                              : 'bg-neutral-100 dark:bg-white/5 hover:bg-neutral-200 dark:hover:bg-white/10 text-neutral-700 dark:text-neutral-300'
                           }`}
                         >
                           {type}
@@ -274,68 +235,106 @@ export default function Contact() {
                     </div>
                   </div>
 
-                  {/* Budget Range Radio / Pills */}
+                  {/* Budget Tier */}
                   <div>
-                    <label className="block text-xs font-semibold text-neutral-800 dark:text-neutral-200 mb-2">
-                      Estimated Project Budget Tier <span className="text-red-500">*</span>
+                    <label className="text-xs font-mono uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block mb-2 font-bold">
+                      Estimated Budget Range
                     </label>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                      {BUDGET_RANGES.map((budget) => (
+                    <div className="flex flex-wrap gap-2">
+                      {BUDGET_RANGES.map((b) => (
                         <button
-                          key={budget}
+                          key={b}
                           type="button"
-                          onClick={() => setFormData({ ...formData, budgetRange: budget })}
-                          className={`py-2 px-3 rounded-xl text-xs font-mono font-medium text-center transition-all cursor-pointer ${
-                            formData.budgetRange === budget
-                              ? 'bg-[#c8ff00] text-black font-semibold ring-1 ring-black/20 dark:ring-[#c8ff00]/60'
-                              : 'bg-neutral-100 dark:bg-white/[0.06] hover:bg-neutral-200/80 dark:hover:bg-white/10 text-neutral-700 dark:text-neutral-300'
+                          onClick={() => setFormData({ ...formData, budgetRange: b })}
+                          className={`px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold transition-all cursor-pointer ${
+                            formData.budgetRange === b
+                              ? 'bg-[#ff4d26] text-white shadow-xs'
+                              : 'bg-neutral-100 dark:bg-white/5 hover:bg-neutral-200 dark:hover:bg-white/10 text-neutral-700 dark:text-neutral-300'
                           }`}
                         >
-                          {budget}
+                          {b}
                         </button>
                       ))}
                     </div>
                   </div>
 
-                  {/* Project Summary Message */}
+                  {/* Name & Email Fields */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-xs font-mono uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block mb-1.5 font-bold">
+                        Your Name *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        placeholder="Alex Morgan"
+                        className="w-full px-4 py-3 rounded-xl bg-neutral-50 dark:bg-white/[0.04] border border-black/10 dark:border-white/10 text-sm text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff4d26] transition-all"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs font-mono uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block mb-1.5 font-bold">
+                        Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder="alex@company.com"
+                        className="w-full px-4 py-3 rounded-xl bg-neutral-50 dark:bg-white/[0.04] border border-black/10 dark:border-white/10 text-sm text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff4d26] transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Company / Website */}
                   <div>
-                    <label htmlFor="contact-message" className="block text-xs font-semibold text-neutral-800 dark:text-neutral-200 mb-2">
-                      Project Details &amp; Goals <span className="text-red-500">*</span>
+                    <label className="text-xs font-mono uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block mb-1.5 font-bold">
+                      Company or Website (Optional)
                     </label>
-                    <textarea
-                      id="contact-message"
-                      rows={4}
-                      required
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Briefly describe your vision, target timeline, and any specific technical or design needs..."
-                      className="w-full px-4 py-3 rounded-xl border border-black/10 dark:border-white/15 bg-neutral-50/50 dark:bg-white/[0.04] text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:bg-white dark:focus:bg-[#1a1d26] focus:outline-none focus:ring-2 focus:ring-[#c8ff00] focus:border-transparent transition-all resize-y"
+                    <input
+                      type="text"
+                      value={formData.company}
+                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                      placeholder="acme.com"
+                      className="w-full px-4 py-3 rounded-xl bg-neutral-50 dark:bg-white/[0.04] border border-black/10 dark:border-white/10 text-sm text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff4d26] transition-all"
                     />
                   </div>
 
-                  {/* Submit Button */}
+                  {/* Project Details */}
+                  <div>
+                    <label className="text-xs font-mono uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block mb-1.5 font-bold">
+                      Project Goals &amp; Scope *
+                    </label>
+                    <textarea
+                      required
+                      rows={4}
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      placeholder="Describe your vision, timeline, or current challenge..."
+                      className="w-full px-4 py-3 rounded-xl bg-neutral-50 dark:bg-white/[0.04] border border-black/10 dark:border-white/10 text-sm text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#ff4d26] transition-all resize-none"
+                    />
+                  </div>
+
+                  {/* Submit Button (Custom High-End Agency Style) */}
                   <button
-                    id="submit-contact-button"
                     type="submit"
                     disabled={loading}
-                    className="w-full py-4 px-8 rounded-full bg-black dark:bg-[#c8ff00] text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-[#b8ec00] font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-200 hover:shadow-lg disabled:opacity-60 cursor-pointer"
+                    className="w-full py-4 rounded-full bg-black dark:bg-white text-white dark:text-black font-black uppercase text-xs tracking-widest hover:bg-[#ff4d26] dark:hover:bg-[#ff4d26] dark:hover:text-white transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer shadow-md disabled:opacity-50"
                   >
                     {loading ? (
                       <>
-                        <Loader2 className="w-4 h-4 animate-spin text-[#c8ff00] dark:text-black" />
-                        <span>Transmitting Brief to Mateo &amp; Omar...</span>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Transmitting to Founders...</span>
                       </>
                     ) : (
                       <>
-                        <span>Submit Project Brief</span>
-                        <ArrowUpRight className="w-4 h-4 text-[#c8ff00] dark:text-black" />
+                        <span>Submit Project Inquiry</span>
+                        <ArrowUpRight className="w-4 h-4" />
                       </>
                     )}
                   </button>
-
-                  <p className="text-[11px] text-center text-neutral-400 dark:text-neutral-500 font-mono">
-                    Protected by confidentiality. We never share or sell project proposals.
-                  </p>
                 </form>
               )}
             </div>

@@ -1,35 +1,32 @@
 'use client';
 
 import React from 'react';
-import { Palette, Layout, Code2, Terminal, Sparkles, Layers, Wand2, Compass } from 'lucide-react';
+import { Layout, Palette, Code2, Terminal, Sparkles, Layers, Wand2, Compass } from 'lucide-react';
 
 const CAPABILITIES = [
-  { name: 'Web Design', icon: Layout, desc: 'Editorial & Responsive Interfaces', color: 'bg-[#c8ff00]' },
-  { name: 'UI/UX', icon: Palette, desc: 'Frictionless User Journeys', color: 'bg-white' },
-  { name: 'Frontend', icon: Code2, desc: 'Type-Safe React & Next.js', color: 'bg-white' },
-  { name: 'Development', icon: Terminal, desc: 'APIs, Backends & Systems', color: 'bg-[#c8ff00]' },
-  { name: 'Brand Identity', icon: Sparkles, desc: 'Distinctive Typography & Marks', color: 'bg-white' },
-  { name: 'Graphic Design', icon: Layers, desc: 'Spatial Systems & Collateral', color: 'bg-white' },
-  { name: 'Motion', icon: Wand2, desc: 'Restrained Kinetic Feedback', color: 'bg-[#c8ff00]' },
-  { name: 'Strategy', icon: Compass, desc: 'Information Architecture & Scope', color: 'bg-white' },
+  { name: 'Web Design', icon: Layout, desc: 'Editorial & Responsive Interfaces' },
+  { name: 'UI/UX Design', icon: Palette, desc: 'Frictionless User Journeys' },
+  { name: 'Frontend Architecture', icon: Code2, desc: 'Type-Safe React & Next.js' },
+  { name: 'Full-Stack Dev', icon: Terminal, desc: 'APIs, Backends & Performance' },
+  { name: 'Brand Identity', icon: Sparkles, desc: 'Distinctive Typography & Marks' },
+  { name: 'Design Systems', icon: Layers, desc: 'Spatial Rules & Tokens' },
+  { name: 'Micro-Interactions', icon: Wand2, desc: 'Restrained Kinetic Feedback' },
+  { name: 'Product Strategy', icon: Compass, desc: 'Information Architecture' },
 ];
 
 export default function CapabilityCloud() {
   return (
-    <section className="py-12 border-b border-black/[0.06] dark:border-white/10 bg-[#fafaf8] dark:bg-[#0c0d12]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-14 bg-[#dde2ea] dark:bg-[#0a0c10] border-y border-black/5 dark:border-white/5 transition-colors duration-300">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
-          <div>
-            <span className="text-[11px] font-mono uppercase tracking-widest text-neutral-500 dark:text-neutral-400 block mb-1">
-              / Studio Disciplines
+          <div className="flex items-center gap-2">
+            <span className="w-1 h-4 bg-[#ff4d26] inline-block rounded-full" />
+            <span className="text-sm font-black uppercase tracking-wider text-neutral-900 dark:text-white">
+              STUDIO DISCIPLINES
             </span>
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 dark:text-white">
-              Expertise designed to work in harmony.
-            </h2>
           </div>
           <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 max-w-md">
-            Every capability is executed directly by founders Mateo and Omar — ensuring seamless collaboration from
-            sketchbook to deployment.
+            Executed directly in tandem by Mateo &amp; Omar — eliminating translation loss between visual craft and code.
           </p>
         </div>
 
@@ -40,18 +37,18 @@ export default function CapabilityCloud() {
             return (
               <div
                 key={item.name}
-                className="group relative p-4 rounded-2xl bg-white dark:bg-[#13151b] border border-black/[0.07] dark:border-white/10 hover:border-black/30 dark:hover:border-white/30 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 flex flex-col justify-between"
+                className="group relative p-4 rounded-2xl bg-white dark:bg-[#131620] border border-black/5 dark:border-white/10 hover:border-black/20 dark:hover:border-white/20 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 flex flex-col justify-between"
               >
                 <div className="flex items-center justify-between mb-3">
-                  <div className="w-8 h-8 rounded-xl bg-black/[0.03] dark:bg-white/[0.05] group-hover:bg-[#c8ff00]/40 dark:group-hover:bg-[#c8ff00]/20 flex items-center justify-center text-neutral-800 dark:text-neutral-200 transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-neutral-100 dark:bg-white/5 group-hover:bg-[#ff4d26] group-hover:text-white flex items-center justify-center text-neutral-800 dark:text-neutral-200 transition-colors">
                     <Icon className="w-4 h-4" />
                   </div>
-                  <span className="text-[10px] font-mono text-neutral-400 dark:text-neutral-500 group-hover:text-black dark:group-hover:text-[#c8ff00] transition-colors">
+                  <span className="text-[10px] font-mono text-neutral-400 dark:text-neutral-500">
                     0{idx + 1}
                   </span>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm text-neutral-950 dark:text-white group-hover:text-black dark:group-hover:text-[#c8ff00] flex items-center gap-1.5 transition-colors">
+                  <h3 className="font-bold text-xs uppercase tracking-tight text-neutral-950 dark:text-white group-hover:text-[#ff4d26] transition-colors">
                     {item.name}
                   </h3>
                   <p className="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5 leading-snug">

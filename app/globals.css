@@ -5,23 +5,26 @@
 @theme {
   --font-sans: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-serif: var(--font-serif), Georgia, "Times New Roman", serif;
+  --font-script: var(--font-script), cursive;
+  --color-brand-solar: #ff4d26;
+  --color-brand-amber: #ff9100;
+  --color-brand-violet: #6320ee;
   --color-brand-lime: #c8ff00;
   --color-brand-lime-hover: #b8ec00;
-  --color-brand-offwhite: #f8f8f6;
+  --color-brand-canvas: #dde2ea;
   --color-brand-card: #ffffff;
-  --color-brand-dark: #0d0e12;
-  --color-brand-dark-card: #14161c;
-  --color-brand-muted: #696c75;
+  --color-brand-dark: #0a0c10;
+  --color-brand-dark-card: #131620;
 }
 
 :root {
-  --canvas-bg: #f8f8f6;
-  --text-main: #0e0f11;
+  --canvas-bg: #dde2ea;
+  --text-main: #0a0b0e;
 }
 
 html.dark {
-  --canvas-bg: #090a0d;
-  --text-main: #f5f5f7;
+  --canvas-bg: #0a0c10;
+  --text-main: #f5f6fa;
   color-scheme: dark;
 }
 
@@ -36,6 +39,20 @@ html {
 .font-serif-italic {
   font-family: var(--font-serif), Georgia, serif;
   font-style: italic;
+}
+
+.font-script {
+  font-family: var(--font-script), cursive;
+}
+
+/* Watermark backdrop text */
+.watermark-text {
+  user-select: none;
+  pointer-events: none;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  line-height: 0.8;
 }
 
 @media (prefers-reduced-motion: reduce) {

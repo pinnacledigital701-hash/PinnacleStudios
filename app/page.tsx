@@ -1,11 +1,11 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import Services from '@/components/Services';
+import Projects from '@/components/Projects';
+import Studio from '@/components/Studio';
+import Process from '@/components/Process';
 import CapabilityCloud from '@/components/CapabilityCloud';
 import Intro from '@/components/Intro';
-import Process from '@/components/Process';
-import Projects from '@/components/Projects';
-import Services from '@/components/Services';
-import Studio from '@/components/Studio';
 import Technology from '@/components/Technology';
 import WhyPinnacle from '@/components/WhyPinnacle';
 import Testimonials from '@/components/Testimonials';
@@ -14,15 +14,15 @@ import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#f8f8f6] dark:bg-[#090a0d] text-[#0e0f11] dark:text-[#f5f5f7] overflow-x-hidden selection:bg-[#c8ff00] selection:text-black">
+    <main className="min-h-screen bg-[#dde2ea] dark:bg-[#0a0c10] text-neutral-950 dark:text-neutral-100 overflow-x-hidden selection:bg-[#ff4d26] selection:text-white transition-colors duration-300">
       <Navbar />
       <Hero />
+      <Services />
+      <Projects />
+      <Studio />
+      <Process />
       <CapabilityCloud />
       <Intro />
-      <Process />
-      <Projects />
-      <Services />
-      <Studio />
       <Technology />
       <WhyPinnacle />
       <Testimonials />
